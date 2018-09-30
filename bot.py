@@ -2,14 +2,14 @@ import discord
 from discord.ext import commands
 import asyncio
 import datetime
-
+from config import token
 bot = commands.Bot(command_prefix="?")
 
 async def do_inktober():
 	t = datetime.datetime.now()
 	future = datetime.datetime(t.year, t.month, t.day+1, 0, 0)
 	await asyncio.sleep((future-t).seconds)
-	channel = bot.get_channel(495288723693502464)
+	channel = bot.get_channel(495268727013507072)
 
 	candidates = []
 	async for message in channel.history(limit=5000, after=t):
@@ -37,10 +37,13 @@ async def do_inktober():
 
 
 
-@bot.event()
+@bot.event
 async def on_ready():
+	print("on")
 	bot.loop.create_task(do_inktober())
 
+
+bot.run(token)
 
 
 
