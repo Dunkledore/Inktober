@@ -39,7 +39,7 @@ async def do_inktober():
 
 @bot.event
 async def on_ready():
-	print("on")
+	print("bot on")
 	bot.loop.create_task(do_inktober())
 
 
