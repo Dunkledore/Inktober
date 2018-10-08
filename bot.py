@@ -40,7 +40,10 @@ async def do_inktober():
 @bot.event
 async def on_ready():
 	print("bot on")
-	bot.loop.create_task(do_inktober())
+	bot.done = None
+	if not bot.done:
+		bot.loop.create_task(do_inktober())
+		bot.done = True
 
 
 bot.run(token)
